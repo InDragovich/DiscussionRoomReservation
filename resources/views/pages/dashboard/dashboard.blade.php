@@ -23,7 +23,7 @@
             </a>
             @else
             <a href="#" class="btn btn-secondary" onclick="alert('Anda harus login untuk melakukan reservasi ruangan!');">
-              Pesan Ruangan
+              Reservasi Ruangan
           </a>
           @endauth
         </div>

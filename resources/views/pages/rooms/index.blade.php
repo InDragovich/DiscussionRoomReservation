@@ -20,16 +20,16 @@
           <tbody>
             @foreach ($data as $item)
               <tr>
-                {{-- <td>{{ $item->room }}</td>
+                <td>{{ $item->name }}</td>
                 <td>{{ $item->capacity }}</td>
-                <td>{{ $item->description }}</td> --}}
-                <td>Room 3</td>
+                <td>{{ $item->description }}</td>
+                {{-- <td>Room 3</td>
                 <td>100</td>
-                <td>Room 3</td>
+                <td>Room 3</td> --}}
                 <td>
                   <div class="d-flex justify-content-center">
                     <!-- Tombol Edit -->
-                    <a href="{{ url('rooms/' . hashidEncode($item->id_user) . '/edit') }}">
+                    <a href="{{ url('rooms/' . '/edit') }}">
                       <button class="btn btn-primary">
                         <i class="far fa-edit"></i>
                       
@@ -37,7 +37,7 @@
                     </a>
 
                     <!-- Tombol Delete -->
-                    <form action="{{ url('rooms/' . hashidEncode($item->id_user)) }}" method="POST"
+                    <form action="{{ url('rooms/') }}" method="POST"
                       class="mx-2">
                       @csrf
                       @method('DELETE')
