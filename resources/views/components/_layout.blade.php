@@ -238,7 +238,7 @@
     } from 'ckeditor5';
 
     ClassicEditor
-        .create( document.querySelector( '#description' ), {
+        .create( document.querySelector( '#description' && '#members' ), {
             plugins: [ Essentials, Bold, Italic, Font, Paragraph ],
             toolbar: [
                 'undo', 'redo', '|', 'bold', 'italic', '|',

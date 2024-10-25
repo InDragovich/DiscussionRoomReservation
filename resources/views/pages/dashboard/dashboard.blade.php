@@ -4,10 +4,10 @@
   {{-- Kalendar --}}
   <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Kalendar</h6>
+          <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-calendar-alt"></i> Kalender Interaktif</h6>
           <div>
               {{-- @auth --}}
-                  <a href="{{ route('reservations.index') }}" class="btn btn-primary">
+                  <a href="{{ route('reservations.create') }}" class="btn btn-primary">
                       Reservasi Ruangan
                   </a>
               {{-- @else --}}

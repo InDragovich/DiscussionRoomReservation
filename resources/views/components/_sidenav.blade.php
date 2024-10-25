@@ -22,7 +22,7 @@
   <li class="nav-item">
     {{-- @auth --}}
     <a class="nav-link collapsed" href="{{ url('rooms') }}">
-      <i class="fas fa-home"></i>
+      <i class="fas fa-cogs"></i>
       <span>Kelola Ruangan</span>
     </a>
     {{-- @endauth --}}
@@ -54,8 +54,14 @@
   @endauth
   <li class="nav-item">
     <a class="nav-link collapsed" href="">
-      <i class="fas fa-book"></i>
-      <span>Daftar Reservasi</span>
+      <i class="fas fa-users"></i>
+      <span>Kelola User</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="">
+      <i class="fas fa-list"></i>
+      <span>Activity Log</span>
     </a>
   </li>
 
