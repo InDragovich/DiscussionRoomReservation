@@ -13,7 +13,9 @@
             <tr>
               <th>Ruangan</th>
               <th>Kapasitas</th>
+              <th>Kategori</th>
               <th>Deskripsi</th>
+              <th>Gambar</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -22,10 +24,15 @@
               <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->capacity }}</td>
+                <td class="capitalize">{{ $item->category }}</td>
                 <td>{!! strip_tags($item->description) !!}</td>
-                {{-- <td>Room 3</td>
-                <td>100</td>
-                <td>Room 3</td> --}}
+                <td>
+                  <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('storage/room_img/no_image.jpg') }}" 
+                       alt="{{ $item->name }}" 
+                       class="img-thumbnail" 
+                       style="max-width: 100px; max-height: 100px;">
+                </td>
+                
                 <td>
                   <div class="d-flex justify-content-center">
                     <!-- Tombol Edit -->

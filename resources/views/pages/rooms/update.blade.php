@@ -6,7 +6,7 @@
   <!-- DataTables -->
   <div class="card shadow mb-4">
     <div class="card-body">
-      <form action="{{ url('rooms/' . hashidEncode($data->id_room)) }}" method="post"> 
+      <form action="{{ url('rooms/' . hashidEncode($data->id_room)) }}" method="post" enctype="multipart/form-data"> 
         @method('PUT')
         @include('pages.rooms._form', ['data' => $data])
       </form>

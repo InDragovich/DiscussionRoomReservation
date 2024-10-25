@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class RoomController extends Controller
@@ -26,6 +28,30 @@ class RoomController extends Controller
         // return view('admin.rooms.create');
     }
 
+    private function uploadImage(Request $request, $oldImage = null)
+    {
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($oldImage) {
+                Storage::disk('public')->delete($oldImage);
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            
+            $path = $image->storeAs('room_img', $imageName, 'public');
+            
+            if ($path) {
+                Log::info('Gambar berhasil diupload: ' . $path);
+                return $path;
+            } else {
+                Log::error('Gagal mengupload gambar');
+                return null;
+            }
+        }
+        return $oldImage; // Kembalikan gambar lama jika tidak ada upload baru
+    }
+
     public function store(Request $request) {
         
         // $room = Room::create($request->all());
@@ -33,15 +59,30 @@ class RoomController extends Controller
         $request->validate([
             'name' => 'required',
             'capacity' => 'required',
+            'category' => 'required',
             'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'name.required' => 'Nama ruangan wajib diisi',
             'capacity.required' => 'Kapasistas ruangan wajib diisi',
-            'description' => 'Deskripsi Wajib Diisi',
+            'category.required' => 'Kategori ruangan wajib diisi',
+            'description.required' => 'Deskripsi Wajib Diisi',
+            'image.required' => 'Gambar Wajib Diisi',
+            'image.image' => 'File harus gambar',
+            'image.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif',
+            'image.max' => 'Ukuran gambar maksimal 2MB',
         ]);
         
         $data = $request->all();
-        
+        $data['image'] = $this->uploadImage($request);
+        // dd($data);
+
+//         if ($request->hasFile('image')) {
+//         $imageName = time() . '.' . $request->image->extension();
+//     $request->image->storeAs('public/room_img', $imageName);
+//     $data['image'] = 'room_img/' . $imageName;
+// }
+
         Room::create($data);
         notify()->success('Data Berhasil Dimasukkan');
         return redirect('rooms');
@@ -61,16 +102,22 @@ class RoomController extends Controller
             'name' => 'required',
             'capacity' => 'required',
             'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'name.required' => 'Nama ruangan wajib diisi',
             'capacity.required' => 'Kapasistas ruangan wajib diisi',
             'description.required' => 'Deskripsi Wajib Diisi',
+            'image.required' => 'Gambar Wajib Diisi',
+            'image.image' => 'File harus gambar',
+            'image.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif',
+            'image.max' => 'Ukuran gambar maksimal 2MB',
         ]);
         // dd($request->all());
         $room = Room::find(hashidDecode($id_room))->first();
-
         $data = $request->all();
         
+        $data['image'] = $this->uploadImage($request, $room->image);
+        // dd($data);
     
         $room->update($data);
         notify()->success('Data Berhasil Diupdate');

@@ -12,5 +12,5 @@ class Room extends Model
     protected $table = 'rooms';
     protected $primaryKey = 'id_room';
     protected $guarded = ['id_room'];
-    // protected $fillable = ['name', 'capacity', 'description'];
+    // protected $fillable = ['name', 'capacity', 'category', 'description', 'image'];
 }

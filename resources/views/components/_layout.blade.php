@@ -141,6 +141,46 @@
   <!-- Custom scripts for all pages -->
   <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
+  <!-- Custom scripts for create/update page -->
+  <script>
+    function updateCategory() {
+      var capacity = document.getElementById('capacity').value;
+      var category = document.getElementById('category');
+      
+      if (capacity <= 5) {
+        category.value = 'Kecil';
+      } else if (capacity > 5 && capacity <= 10) {
+        category.value = 'Sedang';
+      } else if (capacity > 10 && capacity <= 20) {
+        category.value = 'Besar';
+      } else {
+        category.value = '';
+      }
+    }
+    
+    function previewImage(input) {
+    var preview = document.getElementById('imagePreview');
+    var noImagePath = "{{ asset('assets/img/no_image.jpg') }}";
+    
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.src = "{{ isset($room) && $room->image ? asset('storage/' . $room->image) : asset('assets/img/no_image.jpg') }}";
+    }
+}
+    
+    // Inisialisasi tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+
   <!-- Page level plugins -->
   <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>

@@ -7,7 +7,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Kalendar</h6>
           <div>
               {{-- @auth --}}
-                  <a href="{{ route('reservations') }}" class="btn btn-primary">
+                  <a href="{{ route('reservations.index') }}" class="btn btn-primary">
                       Reservasi Ruangan
                   </a>
               {{-- @else --}}

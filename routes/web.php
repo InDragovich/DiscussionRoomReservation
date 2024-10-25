@@ -36,6 +36,8 @@ use App\Http\Controllers\DashboardController;
   // Route::resource('reservations', ReservationController::class);
   // Route::post('/reservations/submit', [ReservationController::class, 'submit'])->name('reservations.submit');
 
+  Route::get('/get-calendar-data', [ReservationController::class, 'getCalendarData']);
+
   Route::get('logout', [AuthController::class, 'logout']);
   
   Route::middleware('guest')->group(function () {

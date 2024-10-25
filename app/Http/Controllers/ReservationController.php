@@ -23,6 +23,31 @@ class ReservationController extends Controller
             'data' => Reservation::latest()->get(),
         ]);
     }
+
+    public function getCalendarData()
+{
+    $rooms = Room::all()->map(function($room) {
+        return [
+            'id' => $room->id,
+            'title' => $room->name
+        ];
+    });
+
+    $reservations = Reservation::with('room')->get()->map(function($reservation) {
+        return [
+            'id' => $reservation->id,
+            'resourceId' => $reservation->room_id,
+            'title' => $reservation->title,
+            'start' => $reservation->start_time,
+            'end' => $reservation->end_time
+        ];
+    });
+
+    return response()->json([
+        'resources' => $rooms,
+        'events' => $reservations
+    ]);
+}
     
     public function create()
     {
