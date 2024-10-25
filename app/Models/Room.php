@@ -10,5 +10,7 @@ class Room extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'rooms';
+    protected $primaryKey = 'id_room';
     protected $guarded = ['id_room'];
+    // protected $fillable = ['name', 'capacity', 'description'];
 }

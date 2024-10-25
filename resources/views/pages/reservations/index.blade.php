@@ -1,7 +1,7 @@
 <x-_layout>
   <x-slot:title>{{ $title }}</x-slot:title>
   <div class="mb-3">
-    <a href="{{ url('rooms/create') }}" class="btn btn-primary">Tambah Data Ruangan</a>
+    <a href="{{ url('reservations/create') }}" class="btn btn-primary">Reservasi Ruangan</a>
   </div>
 
   <!-- DataTables -->
@@ -11,13 +11,29 @@
         <table class="table table-bordered" id="dataRoom" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>Ruangan</th>
-              <th>Kapasitas</th>
-              <th>Deskripsi</th>
+              <th>Nama Pemesan</th>
+              <th>Email</th>
+              <th>Tanggal</th>
+              <th>Jam Mulai</th>
+              <th>Jam Selesai</th>
+              <th>Tujuan</th>
+              <th>Nama Anggota</th>
+              <th>Status</th>
+              <th>Alasan</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
+                <td>John</td>
+                <td>email@example.com</td>
+                <td>2024-10-25</td>
+                <td>10:00</td>
+                <td>12:00</td>
+                <td>Belajar</td>
+                <td>Agus Indra</td>
+                <td>Tolak</td>
+                <td>Kenapa</td>
+                <td>Edit</td>
             @foreach ($data as $item)
               <tr>
                 {{-- <td>{{ $item->room }}</td>

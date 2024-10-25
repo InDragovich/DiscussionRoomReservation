@@ -28,21 +28,21 @@
     {{-- @endauth --}}
   </li>
 
-  @auth
+  {{-- @auth --}}
   <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ url('reservations') }}">
+      <i class="fas fa-history"></i>
+      <span>Riwayat Reservasi</span>
+    </a>
+  </li>
+  {{-- @else --}}
+  {{-- <li class="nav-item">
     <a class="nav-link collapsed" href="">
       <i class="fas fa-history"></i>
       <span>Riwayat Reservasi</span>
     </a>
-  </li>
-  @else
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('login') }}">
-      <i class="fas fa-history"></i>
-      <span>Riwayat Reservasi</span>
-    </a>
-  </li>
-  @endauth
+  </li> --}}
+  {{-- @endauth --}}
 
   @auth
   <li class="nav-item">
