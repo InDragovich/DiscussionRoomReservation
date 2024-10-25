@@ -18,4 +18,12 @@ if (!function_exists('hashidDecode')) {
     $hashids = $salt->decode($id);
     return $hashids;
   }
+  
+if (!function_exists('getRandomStatus')) {
+  function getRandomStatus()
+  {
+      $statuses = ['available', 'booked', 'in-use'];
+      return $statuses[array_rand($statuses)];
+  }
+}
 }

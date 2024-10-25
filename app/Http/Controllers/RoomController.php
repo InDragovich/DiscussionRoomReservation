@@ -21,8 +21,8 @@ class RoomController extends Controller
     }
 
     public function create() {
-        
-        return view('pages.rooms.create', [
+        $room = new Room();
+        return view('pages.rooms.create',compact('room'), [
             'title' => 'Tambah Ruangan',
         ]);
         // return view('admin.rooms.create');

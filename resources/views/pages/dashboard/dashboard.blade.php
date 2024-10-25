@@ -17,10 +17,34 @@
               {{-- @endauth --}}
           </div>
       </div>
-      <div class="card-body">
-          <div class="calendar-area">
-              <div id="calendar"></div>
-          </div>
+        <div class="card-body p-0">
+        <div class="calendar-scroll" style="overflow: auto; max-height: 400px;">
+            <table class="table table-bordered m-0" style="min-width: 1000px;">
+                <thead>
+                    <tr>
+                        <th style="position: sticky; left: 0; top: 0; background-color: #fff; z-index: 3;">Ruangan / Jam</th>
+                        @for ($hour = 8; $hour <= 17; $hour++)
+                            <th style="position: sticky; top: 0; background-color: #fff; z-index: 2;">{{ sprintf('%02d:00', $hour) }}</th>
+                        @endfor
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data->sortBy('name') as $room)
+                        <tr>
+                            <td style="position: sticky; left: 0; background-color: #fff; z-index: 1;">
+                                <span data-toggle="tooltip" data-html="true" title="<img src='{{ $room->image_url }}' alt='{{ $room->name }}' style='max-width: 200px; max-height: 150px;'>">
+                                    {{ $room->name }}
+                                    
+                                </span>
+                            </td>
+                            @for ($hour = 8; $hour <= 17; $hour++)
+                                <td class="{{ getRandomStatus() }}"></td>
+                            @endfor
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
       </div>
   </div>
 

@@ -11,11 +11,16 @@ class DashboardController extends Controller
     {
 
         $totalRoom = Room::count();
+        $totalRoom = $this->getRooms();
 
         return view('pages.dashboard.dashboard', [
             'title' => 'Dashboard',
             'totalRoom' => $totalRoom,
             'data' => Room::latest()->get(),
         ]);
+    }
+    private function getRooms()
+       {
+        return Room::all();
     }
 }

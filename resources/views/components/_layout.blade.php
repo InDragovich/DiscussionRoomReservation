@@ -141,6 +141,16 @@
   <!-- Custom scripts for all pages -->
   <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
+  {{-- @push('scripts')
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            trigger: 'hover',
+            placement: 'right'
+        });
+    });
+</script>
+@endpush --}}
   <!-- Custom scripts for create/update page -->
   <script>
     function updateCategory() {
@@ -148,11 +158,11 @@
       var category = document.getElementById('category');
       
       if (capacity <= 5) {
-        category.value = 'Kecil';
+        category.value = 'kecil';
       } else if (capacity > 5 && capacity <= 10) {
-        category.value = 'Sedang';
+        category.value = 'sedang';
       } else if (capacity > 10 && capacity <= 20) {
-        category.value = 'Besar';
+        category.value = 'besar';
       } else {
         category.value = '';
       }

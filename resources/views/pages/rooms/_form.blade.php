@@ -52,12 +52,14 @@
         </div>
       @enderror
     </div>
+    @if(isset($data->image))
     <div class="mb-3">
       <img id="imagePreview" 
            src="{{ isset($data) && $data->image ? asset('storage/' . $data->image) : asset('storage/public/room_img/no_image.jpg') }}" 
            alt="Pratinjau Gambar" 
            style="max-width: 200px; height: auto;">
-    </div>
+    </div>  
+    @endif
   </div>
 </div>
 
